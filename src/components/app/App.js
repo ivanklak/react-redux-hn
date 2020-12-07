@@ -1,15 +1,21 @@
 import React from "react";
 import "./App.css";
-import {Link} from "react-router-dom";
+import { Route } from "react-router-dom";
+import HomePage from "./../homepage";
+import Item from "./../item";
+import TopStories from "./../topStories";
+import Header from "./Header";
 
 const App = props => {
   return (
     <div className="wrapper">
-      <div className="header">
-        <Link to="/">New Stories</Link>
-        <Link to="topstories"> Top Stories</Link>
-      </div>
+      <Header />
       <div className="content">{props.children}</div>
+      <div className="app-wrapper-content">
+        <Route path="/" render={() => <HomePage />} />
+        <Route path="/topstories" render={() => <TopStories />} />
+        <Route path="/item/:id" render={() => <Item />} />
+      </div>
     </div>
   );
 };
